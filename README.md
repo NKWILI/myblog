@@ -117,6 +117,19 @@ export async function getPost(pageId: string): Promise<Post | null> {
    - Fill in the required properties
    - Set status to "Published" when ready
 
+### Automatic redeploy (cron on Vercel)
+
+The site can refresh from Notion on a schedule so new "Published" posts appear without a manual push or Redeploy. A Vercel Cron job calls `/api/cron/redeploy` every hour (see `vercel.json`), which triggers a new production deployment so the build runs again and the Notion cache is updated.
+
+**Required in Vercel → Project → Settings → Environment Variables (Production):**
+
+- `CRON_SECRET` – A secret string (at least 16 characters). Vercel sends it as `Authorization: Bearer <CRON_SECRET>` when invoking the cron; the route rejects requests without it.
+- `VERCEL_TOKEN` – A Vercel API token (create one under [Vercel → Settings → Tokens](https://vercel.com/account/tokens)) so the route can call the Vercel API to trigger a redeploy.
+
+`VERCEL_PROJECT_ID` is set automatically by Vercel. If you use a team, add `VERCEL_TEAM_ID` as well.
+
+Cron only runs on **production** deployments, not on previews.
+
 ## Database Properties
 
 The template uses these default properties:
