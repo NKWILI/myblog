@@ -1,9 +1,5 @@
 {
 	"$schema": "https://openapi.vercel.sh/vercel.json",
-	"crons": [
-		{
-			"path": "/api/cron/redeploy",
-			"schedule": "0 0 * * *"
-		}
-	]
+	"installCommand": "npm ci",
+	"crons": [{ "path": "/api/cron/redeploy", "schedule": "0 0 * * *" }]
 }
