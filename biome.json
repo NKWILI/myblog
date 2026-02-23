@@ -1,6 +1,6 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
 	"files": {
-		"ignore": [".next", "out", "build", "*.tsbuildinfo"]
+		"ignore": [".next", "out", "build", ".vercel", "*.tsbuildinfo"]
 	}
 }
