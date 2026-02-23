@@ -110,21 +110,21 @@ export async function getPostFromNotion(pageId: string): Promise<Post | null> {
 			}
 		>;
 		const properties = page.properties as NotionProps;
+		const titleText = properties.Title?.title?.[0]?.plain_text;
 		const post: Post = {
 			id: page.id,
-			title: properties.Title.title[0]?.plain_text || "Untitled",
+			title: titleText || "Untitled",
 			slug:
-				properties.Title.title[0]?.plain_text
+				(titleText ?? "")
 					.toLowerCase()
 					.replace(/[^a-z0-9]+/g, "-") // Replace any non-alphanumeric chars with dash
-					.replace(/^-+|-+$/g, "") || // Remove leading/trailing dashes
-				"untitled",
+					.replace(/^-+|-+$/g, "") || "untitled",
 			coverImage: properties["Featured Image"]?.url || undefined,
 			description,
 			date:
 				properties["Published Date"]?.date?.start || new Date().toISOString(),
 			content: contentString,
-			author: properties.Author?.people[0]?.name,
+			author: properties.Author?.people?.[0]?.name,
 			tags:
 				properties.Tags?.multi_select?.map(
 					(tag: { name: string }) => tag.name,
