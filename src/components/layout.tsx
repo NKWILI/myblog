@@ -1,4 +1,6 @@
+import { MobileNav } from "@/components/mobile-nav";
 import { ModeToggle } from "@/components/mode-toggle";
+import { siteConfig } from "@/lib/site-config";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -11,16 +13,29 @@ export default function Layout({ children }: LayoutProps) {
 		<div className="min-h-screen bg-background">
 			<header className="border-b">
 				<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="flex justify-between h-16">
-						<div className="flex">
+					<div className="flex md:grid md:grid-cols-[1fr_auto_1fr] justify-between md:justify-stretch items-start sm:items-center min-h-16 py-3 sm:py-0 gap-4">
+						<div className="flex items-center min-w-0">
 							<Link
 								href="/"
-								className="flex items-center text-xl font-bold text-foreground"
+								className="text-xl font-bold text-foreground tracking-wide hover:text-[#2563eb] transition-colors"
 							>
-								My Blog
+								{siteConfig.siteName}
 							</Link>
 						</div>
-						<div className="flex items-center">
+						<ul className="hidden md:flex justify-center items-center gap-6">
+							{siteConfig.navItems.map(({ href, label }) => (
+								<li key={href}>
+									<Link
+										href={href}
+										className="text-foreground/90 tracking-wide hover:text-[#2563eb] transition-colors text-sm sm:text-base"
+									>
+										{label}
+									</Link>
+								</li>
+							))}
+						</ul>
+						<div className="flex items-center justify-end shrink-0 gap-2">
+							<MobileNav navItems={siteConfig.navItems} />
 							<ModeToggle />
 						</div>
 					</div>
@@ -33,9 +48,29 @@ export default function Layout({ children }: LayoutProps) {
 
 			<footer className="bg-muted border-t">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-					<p className="text-center text-muted-foreground">
-						© {new Date().getFullYear()} My Blog. All rights reserved.
-					</p>
+					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+						<ul className="flex items-center gap-6">
+							{siteConfig.socialLinks.map(({ label, href }) => (
+								<li key={href}>
+									<Link
+										href={href}
+										target={href.startsWith("http") ? "_blank" : undefined}
+										rel={
+											href.startsWith("http")
+												? "noopener noreferrer"
+												: undefined
+										}
+										className="text-muted-foreground hover:text-foreground hover:underline transition-colors text-sm"
+									>
+										{label}
+									</Link>
+								</li>
+							))}
+						</ul>
+						<p className="text-center text-muted-foreground text-sm">
+							© {new Date().getFullYear()} {siteConfig.siteName}
+						</p>
+					</div>
 				</div>
 			</footer>
 		</div>
