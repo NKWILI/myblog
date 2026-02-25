@@ -68,11 +68,11 @@ export default function PostCard({ post }: PostCardProps) {
 					</div>
 				</div>
 				<div className="group-hover:pr-8 transition-all duration-300">
-					<h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+					<h2 className="text-xl font-semibold text-foreground group-hover:text-link transition-colors">
 						{post.title}
 					</h2>
 					<ArrowTopRightIcon
-						className="absolute top-[7.5rem] right-6 h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary"
+						className="absolute top-[7.5rem] right-6 h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-link"
 						style={{ width: 24, height: 24 }}
 					/>
 				</div>

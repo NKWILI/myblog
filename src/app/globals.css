@@ -214,3 +214,8 @@
 		font-family: var(--font-heading-family), ui-serif, Georgia, serif;
 	}
 }
+
+/* Headline-dominant editorial layout (e.g. blog index) */
+.font-editorial {
+	font-family: Georgia, serif;
+}
