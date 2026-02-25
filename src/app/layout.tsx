@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
+import { JetBrains_Mono, Outfit, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({
+const outfit = Outfit({
 	subsets: ["latin"],
 	variable: "--font-sans-family",
 });
@@ -86,10 +86,10 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					inter.variable,
+					outfit.variable,
 					sourceSerif.variable,
 					jetbrainsMono.variable,
-					inter.className,
+					outfit.className,
 				)}
 			>
 				<ThemeProvider

@@ -7,8 +7,12 @@ import {
 } from "@/components/ui/card";
 import { type Post, getWordCount } from "@/lib/notion";
 import { calculateReadingTime } from "@/lib/utils";
+import {
+	ArrowTopRightIcon,
+	CalendarIcon,
+	ClockIcon,
+} from "@radix-ui/react-icons";
 import { format } from "date-fns";
-import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -52,11 +56,14 @@ export default function PostCard({ post }: PostCardProps) {
 			<CardHeader className="space-y-2">
 				<div className="flex items-center gap-4 text-sm text-muted-foreground">
 					<div className="flex items-center gap-1.5">
-						<Calendar className="h-4 w-4" />
+						<CalendarIcon
+							className="h-4 w-4"
+							style={{ width: 16, height: 16 }}
+						/>
 						<span>{format(new Date(post.date), "MMM d, yyyy")}</span>
 					</div>
 					<div className="flex items-center gap-1.5">
-						<Clock className="h-4 w-4" />
+						<ClockIcon className="h-4 w-4" style={{ width: 16, height: 16 }} />
 						<span>{readingTime}</span>
 					</div>
 				</div>
@@ -64,7 +71,10 @@ export default function PostCard({ post }: PostCardProps) {
 					<h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
 						{post.title}
 					</h2>
-					<ArrowUpRight className="absolute top-[7.5rem] right-6 h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary" />
+					<ArrowTopRightIcon
+						className="absolute top-[7.5rem] right-6 h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary"
+						style={{ width: 24, height: 24 }}
+					/>
 				</div>
 				<p className="text-muted-foreground line-clamp-2">{post.description}</p>
 			</CardHeader>

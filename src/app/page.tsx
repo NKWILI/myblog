@@ -59,7 +59,7 @@ export default function Home() {
 												{rest || intro}{" "}
 												<Link
 													href="#recent-posts"
-													className="text-foreground/90 underline hover:text-[#2563eb] transition-colors"
+													className="text-foreground/90 underline hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
 												>
 													View my recent posts
 												</Link>
@@ -90,7 +90,7 @@ export default function Home() {
 												{rest || intro}{" "}
 												<Link
 													href="#recent-posts"
-													className="text-foreground/90 underline hover:text-[#2563eb] transition-colors"
+													className="text-foreground/90 underline hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
 												>
 													View my recent posts
 												</Link>
@@ -104,22 +104,31 @@ export default function Home() {
 							<h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-4">
 								My recent posts
 							</h2>
-							<ul className="space-y-4">
-								{recentPosts.map((post) => (
-									<li key={post.id}>
-										<Link href={`/posts/${post.slug}`} className="block group">
-											<span className="font-medium text-foreground group-hover:text-[#2563eb] transition-colors">
-												{post.title}
-											</span>
-											{post.date && (
-												<p className="text-sm text-muted-foreground mt-0.5">
-													{formatPostDate(post.date)}
-												</p>
-											)}
-										</Link>
-									</li>
-								))}
-							</ul>
+							{recentPosts.length === 0 ? (
+								<p className="text-sm text-muted-foreground">
+									No recent posts.
+								</p>
+							) : (
+								<ul className="space-y-4">
+									{recentPosts.map((post) => (
+										<li key={post.id}>
+											<Link
+												href={`/posts/${post.slug}`}
+												className="block group transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
+											>
+												<span className="font-medium text-foreground group-hover:text-link transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+													{post.title}
+												</span>
+												{post.date && (
+													<p className="text-sm text-muted-foreground mt-0.5">
+														{formatPostDate(post.date)}
+													</p>
+												)}
+											</Link>
+										</li>
+									))}
+								</ul>
+							)}
 						</div>
 					</div>
 				</div>
@@ -139,25 +148,29 @@ export default function Home() {
 					<h2 className="text-sm font-semibold text-foreground uppercase tracking-wide mb-4">
 						My recent posts
 					</h2>
-					<ul className="space-y-4">
-						{recentPosts.map((post) => (
-							<li key={post.id} className="min-w-0">
-								<Link
-									href={`/posts/${post.slug}`}
-									className="block group py-0.5"
-								>
-									<span className="font-medium text-foreground group-hover:text-[#2563eb] transition-colors break-words">
-										{post.title}
-									</span>
-									{post.date && (
-										<p className="text-sm text-muted-foreground mt-0.5">
-											{formatPostDate(post.date)}
-										</p>
-									)}
-								</Link>
-							</li>
-						))}
-					</ul>
+					{recentPosts.length === 0 ? (
+						<p className="text-sm text-muted-foreground">No recent posts.</p>
+					) : (
+						<ul className="space-y-4">
+							{recentPosts.map((post) => (
+								<li key={post.id} className="min-w-0">
+									<Link
+										href={`/posts/${post.slug}`}
+										className="block group py-0.5 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
+									>
+										<span className="font-medium text-foreground group-hover:text-link transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] break-words">
+											{post.title}
+										</span>
+										{post.date && (
+											<p className="text-sm text-muted-foreground mt-0.5">
+												{formatPostDate(post.date)}
+											</p>
+										)}
+									</Link>
+								</li>
+							))}
+						</ul>
+					)}
 				</div>
 			</section>
 
@@ -165,11 +178,11 @@ export default function Home() {
 			<section className="mt-16 lg:mt-24 py-12 lg:py-16 bg-muted/50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					{/* Short about: mobile only */}
-					<p className="max-w-2xl text-base text-foreground leading-relaxed lg:hidden">
+					<p className="max-w-[65ch] text-base text-muted-foreground/90 leading-relaxed lg:hidden">
 						{getAboutShort()}
 					</p>
 					{/* Full about: desktop only */}
-					<p className="max-w-2xl text-base text-foreground leading-relaxed sm:text-lg hidden lg:block">
+					<p className="max-w-[65ch] text-base text-muted-foreground/90 leading-relaxed sm:text-lg hidden lg:block">
 						{siteConfig.aboutParagraph}
 					</p>
 				</div>

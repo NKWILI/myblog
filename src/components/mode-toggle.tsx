@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Moon, Sun } from "lucide-react";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -31,7 +31,7 @@ export function ModeToggle({ className }: ThemeToggleProps) {
 			<button
 				type="button"
 				className={cn(
-					"flex w-16 h-8 p-1 rounded-full cursor-pointer transition-all duration-300",
+					"flex w-16 h-8 p-1 rounded-full cursor-pointer transition-[transform,background-color,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
 					"bg-white border border-zinc-200",
 					className,
 				)}
@@ -39,10 +39,16 @@ export function ModeToggle({ className }: ThemeToggleProps) {
 			>
 				<div className="flex justify-between items-center w-full">
 					<div className="flex justify-center items-center w-6 h-6 rounded-full transition-transform duration-300 transform translate-x-8 bg-gray-200">
-						<Sun className="w-4 h-4 text-gray-700" strokeWidth={1.5} />
+						<SunIcon
+							className="w-4 h-4 text-gray-700"
+							style={{ width: 16, height: 16 }}
+						/>
 					</div>
 					<div className="flex justify-center items-center w-6 h-6 rounded-full transition-transform duration-300 transform -translate-x-8">
-						<Moon className="w-4 h-4 text-black" strokeWidth={1.5} />
+						<MoonIcon
+							className="w-4 h-4 text-black"
+							style={{ width: 16, height: 16 }}
+						/>
 					</div>
 				</div>
 			</button>
@@ -53,7 +59,7 @@ export function ModeToggle({ className }: ThemeToggleProps) {
 		<button
 			type="button"
 			className={cn(
-				"flex w-16 h-8 p-1 rounded-full cursor-pointer transition-all duration-300",
+				"flex w-16 h-8 p-1 rounded-full cursor-pointer transition-[transform,background-color,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
 				isDark
 					? "bg-zinc-950 border border-zinc-800"
 					: "bg-white border border-zinc-200",
@@ -73,9 +79,15 @@ export function ModeToggle({ className }: ThemeToggleProps) {
 					)}
 				>
 					{isDark ? (
-						<Moon className="w-4 h-4 text-white" strokeWidth={1.5} />
+						<MoonIcon
+							className="w-4 h-4 text-white"
+							style={{ width: 16, height: 16 }}
+						/>
 					) : (
-						<Sun className="w-4 h-4 text-gray-700" strokeWidth={1.5} />
+						<SunIcon
+							className="w-4 h-4 text-gray-700"
+							style={{ width: 16, height: 16 }}
+						/>
 					)}
 				</div>
 				<div
@@ -85,9 +97,15 @@ export function ModeToggle({ className }: ThemeToggleProps) {
 					)}
 				>
 					{isDark ? (
-						<Sun className="w-4 h-4 text-gray-500" strokeWidth={1.5} />
+						<SunIcon
+							className="w-4 h-4 text-gray-500"
+							style={{ width: 16, height: 16 }}
+						/>
 					) : (
-						<Moon className="w-4 h-4 text-black" strokeWidth={1.5} />
+						<MoonIcon
+							className="w-4 h-4 text-black"
+							style={{ width: 16, height: 16 }}
+						/>
 					)}
 				</div>
 			</div>

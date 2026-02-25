@@ -10,14 +10,14 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
 	return (
-		<div className="min-h-screen bg-background">
+		<div className="min-h-[100dvh] bg-background">
 			<header className="border-b">
 				<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex md:grid md:grid-cols-[1fr_auto_1fr] justify-between md:justify-stretch items-start sm:items-center min-h-16 py-3 sm:py-0 gap-4">
 						<div className="flex items-center min-w-0">
 							<Link
 								href="/"
-								className="text-xl font-bold text-foreground tracking-wide hover:text-[#2563eb] transition-colors"
+								className="text-xl font-bold text-foreground tracking-wide hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
 							>
 								{siteConfig.siteName}
 							</Link>
@@ -27,7 +27,7 @@ export default function Layout({ children }: LayoutProps) {
 								<li key={href}>
 									<Link
 										href={href}
-										className="text-foreground/90 tracking-wide hover:text-[#2563eb] transition-colors text-sm sm:text-base"
+										className="text-foreground/90 tracking-wide hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] text-sm sm:text-base"
 									>
 										{label}
 									</Link>
@@ -60,7 +60,7 @@ export default function Layout({ children }: LayoutProps) {
 												? "noopener noreferrer"
 												: undefined
 										}
-										className="text-muted-foreground hover:text-foreground hover:underline transition-colors text-sm"
+										className="text-muted-foreground hover:text-link hover:underline transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] text-sm"
 									>
 										{label}
 									</Link>

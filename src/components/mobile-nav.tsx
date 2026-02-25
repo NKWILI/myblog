@@ -9,7 +9,7 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -35,7 +35,10 @@ export function MobileNav({ navItems }: MobileNavProps) {
 					className="md:hidden"
 					aria-label="Open menu"
 				>
-					<Menu className="size-5" />
+					<HamburgerMenuIcon
+						className="size-5"
+						style={{ width: 20, height: 20 }}
+					/>
 				</Button>
 			</SheetTrigger>
 			<SheetContent
@@ -51,7 +54,7 @@ export function MobileNav({ navItems }: MobileNavProps) {
 							key={href}
 							href={href}
 							className={cn(
-								"block rounded-md p-2 -m-2 transition-colors",
+								"block rounded-md p-2 -m-2 transition-[color,background-color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
 								"hover:bg-accent hover:text-accent-foreground",
 								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
 							)}
