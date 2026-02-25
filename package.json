@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "npm run cache:posts -- --allow-fail && next dev --turbopack",
-		"build": "npm run cache:posts && next build",
+		"build": "npm run cache:posts -- --allow-fail && next build",
 		"start": "next start",
 		"lint": "biome lint .",
 		"format": "biome format . --write",

@@ -3,6 +3,17 @@ import fs from "node:fs";
 import path from "node:path";
 import { fetchPublishedPosts, getPostFromNotion } from "../src/lib/notion";
 
+/**
+ * Strip signed S3 query strings (X-Amz-*) from URLs to avoid writing credentials to disk.
+ * Leaves base URL; image may not load without signature (Option A).
+ */
+function stripSignedUrlParams(str: string): string {
+	return str.replace(
+		/(https?:\/\/[^\s?]+)\?[^\]\s)"']*X-Amz-[^\]\s)"']*/g,
+		"$1",
+	);
+}
+
 async function cachePosts() {
 	try {
 		console.log("Fetching posts from Notion...");
@@ -13,7 +24,11 @@ async function cachePosts() {
 		for (const post of posts) {
 			const postDetails = await getPostFromNotion(post.id);
 			if (postDetails) {
-				allPosts.push(postDetails);
+				allPosts.push({
+					...postDetails,
+					description: stripSignedUrlParams(postDetails.description),
+					content: stripSignedUrlParams(postDetails.content),
+				});
 			}
 		}
 
