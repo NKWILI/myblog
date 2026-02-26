@@ -8,6 +8,17 @@ import type { Post } from "./types";
 export type { Post } from "./types";
 export { getWordCount } from "./utils";
 
+/**
+ * Pure slug from title: lowercase, non-alphanumeric → single dash, trim edges, fallback "untitled".
+ */
+export function slugFromTitle(title: string): string {
+	const slug = (title ?? "")
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/^-+|-+$/g, "");
+	return slug || "untitled";
+}
+
 export const notion = new Client({ auth: process.env.NOTION_TOKEN });
 export const n2m = new NotionToMarkdown({ notionClient: notion });
 
@@ -97,11 +108,7 @@ export async function getPostFromNotion(pageId: string): Promise<Post | null> {
 		const post: Post = {
 			id: page.id,
 			title: titleText || "Untitled",
-			slug:
-				(titleText ?? "")
-					.toLowerCase()
-					.replace(/[^a-z0-9]+/g, "-") // Replace any non-alphanumeric chars with dash
-					.replace(/^-+|-+$/g, "") || "untitled",
+			slug: slugFromTitle(titleText ?? ""),
 			coverImage: properties["Featured Image"]?.url || undefined,
 			description,
 			date:

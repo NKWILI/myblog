@@ -2,17 +2,7 @@ import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
 import { fetchPublishedPosts, getPostFromNotion } from "../src/lib/notion";
-
-/**
- * Strip signed S3 query strings (X-Amz-*) from URLs to avoid writing credentials to disk.
- * Leaves base URL; image may not load without signature (Option A).
- */
-function stripSignedUrlParams(str: string): string {
-	return str.replace(
-		/(https?:\/\/[^\s?]+)\?[^\]\s)"']*X-Amz-[^\]\s)"']*/g,
-		"$1",
-	);
-}
+import { stripSignedUrlParams } from "../src/lib/url-utils";
 
 async function cachePosts() {
 	try {
