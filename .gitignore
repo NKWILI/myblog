@@ -47,3 +47,4 @@ next-env.d.ts
 # cache
 /cache
 posts-cache.json
+.cursor/debug-e83c64.log

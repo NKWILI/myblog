@@ -20,7 +20,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
 	return (
-		<div className="min-h-[100dvh] bg-background">
+		<div className="h-[100dvh] overflow-y-auto overflow-x-hidden bg-background">
 			<header className="border-b">
 				<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex md:grid md:grid-cols-[1fr_auto_1fr] justify-between md:justify-stretch items-start sm:items-center min-h-16 py-3 sm:py-0 gap-4">

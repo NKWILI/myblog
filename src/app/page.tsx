@@ -97,7 +97,7 @@ export default function Home() {
 	const featuredPosts = allPosts.slice(0, siteConfig.recentPostsCount);
 
 	return (
-		<div className="min-w-0 overflow-x-hidden">
+		<div className="min-w-0">
 			{/* Hero: split layout, portrait right */}
 			<section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:grid md:grid-cols-[1.1fr_0.9fr] md:gap-0 md:px-0 md:max-w-none">
 				<div className="md:pl-6 lg:pl-8 md:pr-8 md:py-12">
