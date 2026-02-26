@@ -1,9 +1,18 @@
 import { MobileNav } from "@/components/mobile-nav";
 import { ModeToggle } from "@/components/mode-toggle";
 import { siteConfig } from "@/lib/site-config";
-import { Linkedin, Mail } from "lucide-react";
+import { FileText, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+
+function SocialIcon({ label, href }: { label: string; href: string }) {
+	const isMail = label === "Email" || href.startsWith("mailto:");
+	const isGitHub = label === "GitHub";
+	if (isMail) return <Mail className="size-5" />;
+	if (isGitHub) return <Github className="size-5" />;
+	if (label === "LinkedIn") return <Linkedin className="size-5" />;
+	return null;
+}
 
 interface LayoutProps {
 	children: ReactNode;
@@ -43,31 +52,36 @@ export default function Layout({ children }: LayoutProps) {
 						<div className="flex items-center justify-end shrink-0 gap-2">
 							<MobileNav navItems={siteConfig.navItems} />
 							<ul className="flex items-center gap-2" aria-label="Social links">
-								{siteConfig.socialLinks.map(({ label, href }) => {
-									const isMail =
-										label === "Email" || href.startsWith("mailto:");
-									return (
-										<li key={href}>
-											<Link
-												href={href}
-												target={href.startsWith("http") ? "_blank" : undefined}
-												rel={
-													href.startsWith("http")
-														? "noopener noreferrer"
-														: undefined
-												}
-												className="text-muted-foreground hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] p-1.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-												aria-label={label}
-											>
-												{isMail ? (
-													<Mail className="size-5" />
-												) : (
-													<Linkedin className="size-5" />
-												)}
-											</Link>
-										</li>
-									);
-								})}
+								{siteConfig.socialLinks.map(({ label, href }) => (
+									<li key={href}>
+										<Link
+											href={href}
+											target={href.startsWith("http") ? "_blank" : undefined}
+											rel={
+												href.startsWith("http")
+													? "noopener noreferrer"
+													: undefined
+											}
+											className="text-muted-foreground hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] p-1.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+											aria-label={label}
+										>
+											<SocialIcon label={label} href={href} />
+										</Link>
+									</li>
+								))}
+								{siteConfig.cvUrl ? (
+									<li>
+										<Link
+											href={siteConfig.cvUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="text-muted-foreground hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] p-1.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+											aria-label="CV"
+										>
+											<FileText className="size-5" />
+										</Link>
+									</li>
+								) : null}
 							</ul>
 							<ModeToggle />
 						</div>
@@ -81,8 +95,13 @@ export default function Layout({ children }: LayoutProps) {
 
 			<footer className="bg-muted border-t">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-					<div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-						<ul className="flex items-center gap-6">
+					<div className="flex flex-col items-center justify-center gap-4 text-center">
+						{siteConfig.hireabilityLine ? (
+							<p className="text-muted-foreground text-sm">
+								{siteConfig.hireabilityLine}
+							</p>
+						) : null}
+						<ul className="flex flex-wrap items-center justify-center gap-6">
 							{siteConfig.socialLinks.map(({ label, href }) => (
 								<li key={href}>
 									<Link
@@ -99,8 +118,20 @@ export default function Layout({ children }: LayoutProps) {
 									</Link>
 								</li>
 							))}
+							{siteConfig.cvUrl ? (
+								<li>
+									<Link
+										href={siteConfig.cvUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-muted-foreground hover:text-link hover:underline transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] text-sm"
+									>
+										CV
+									</Link>
+								</li>
+							) : null}
 						</ul>
-						<p className="text-center text-muted-foreground text-sm">
+						<p className="text-muted-foreground text-sm">
 							© {new Date().getFullYear()} {siteConfig.siteName}
 						</p>
 					</div>
