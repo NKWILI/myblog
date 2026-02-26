@@ -3,36 +3,19 @@ import path from "node:path";
 import { Client } from "@notionhq/client";
 import type { PageObjectResponse } from "@notionhq/client/";
 import { NotionToMarkdown } from "notion-to-md";
+import type { Post } from "./types";
+
+export type { Post } from "./types";
+export { getWordCount } from "./utils";
 
 export const notion = new Client({ auth: process.env.NOTION_TOKEN });
 export const n2m = new NotionToMarkdown({ notionClient: notion });
-
-export interface Post {
-	id: string;
-	title: string;
-	slug: string;
-	coverImage?: string;
-	description: string;
-	date: string;
-	content: string;
-	author?: string;
-	tags?: string[];
-	category?: string;
-}
 
 export async function getDatabaseStructure() {
 	const databaseId = process.env.NOTION_DATABASE_ID;
 	if (!databaseId) throw new Error("NOTION_DATABASE_ID is required");
 	const database = await notion.databases.retrieve({ database_id: databaseId });
 	return database;
-}
-
-export function getWordCount(content: string): number {
-	const cleanText = content
-		.replace(/[^\w\s]/g, " ")
-		.replace(/\s+/g, " ")
-		.trim();
-	return cleanText.split(" ").length;
 }
 
 export function getPostsFromCache(): Post[] {

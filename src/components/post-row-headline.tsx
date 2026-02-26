@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { type Post, getWordCount } from "@/lib/notion";
-import { calculateReadingTime } from "@/lib/utils";
+import type { Post } from "@/lib/types";
+import { calculateReadingTime, getWordCount } from "@/lib/utils";
 import { CalendarIcon, ClockIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import Link from "next/link";

@@ -3,11 +3,6 @@ import { siteConfig } from "@/lib/site-config";
 import Image from "next/image";
 import Link from "next/link";
 
-function truncate(str: string, maxLength: number): string {
-	if (str.length <= maxLength) return str;
-	return `${str.slice(0, maxLength).trim()}…`;
-}
-
 function formatPostDate(dateStr: string): string {
 	if (!dateStr) return "";
 	const d = new Date(dateStr);
@@ -17,16 +12,6 @@ function formatPostDate(dateStr: string): string {
 		month: "short",
 		day: "numeric",
 	});
-}
-
-function getAboutShort(): string {
-	if ("aboutShort" in siteConfig && siteConfig.aboutShort) {
-		return siteConfig.aboutShort;
-	}
-	const firstSentence = siteConfig.aboutParagraph.match(/^[^.!?]+[.!?]/)?.[0];
-	return firstSentence
-		? firstSentence.trim()
-		: truncate(siteConfig.aboutParagraph, 120);
 }
 
 export default function Home() {
@@ -171,20 +156,6 @@ export default function Home() {
 							))}
 						</ul>
 					)}
-				</div>
-			</section>
-
-			{/* Section 2 — About block */}
-			<section className="mt-16 lg:mt-24 py-12 lg:py-16 bg-muted/50">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					{/* Short about: mobile only */}
-					<p className="max-w-[65ch] text-base text-muted-foreground/90 leading-relaxed lg:hidden">
-						{getAboutShort()}
-					</p>
-					{/* Full about: desktop only */}
-					<p className="max-w-[65ch] text-base text-muted-foreground/90 leading-relaxed sm:text-lg hidden lg:block">
-						{siteConfig.aboutParagraph}
-					</p>
 				</div>
 			</section>
 		</div>

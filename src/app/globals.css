@@ -219,3 +219,9 @@
 .font-editorial {
 	font-family: Georgia, serif;
 }
+
+/* Focus mode spotlight: dim post feed when search is focused */
+.layout-container:has(.search-input:focus) .post-feed {
+	opacity: 0.2;
+	pointer-events: none;
+}

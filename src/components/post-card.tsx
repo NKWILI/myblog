@@ -1,3 +1,4 @@
+import { LikeButton } from "@/components/like-button";
 import { Badge } from "@/components/ui/badge";
 import {
 	Card,
@@ -5,8 +6,8 @@ import {
 	CardFooter,
 	CardHeader,
 } from "@/components/ui/card";
-import { type Post, getWordCount } from "@/lib/notion";
-import { calculateReadingTime } from "@/lib/utils";
+import type { Post } from "@/lib/types";
+import { calculateReadingTime, getWordCount } from "@/lib/utils";
 import {
 	ArrowTopRightIcon,
 	CalendarIcon,
@@ -52,6 +53,18 @@ export default function PostCard({ post }: PostCardProps) {
 						</Badge>
 					</div>
 				)}
+				<div
+					className="absolute top-4 right-4 z-20"
+					onClick={(e) => {
+						e.preventDefault();
+						e.stopPropagation();
+					}}
+					onKeyDown={(e) => {
+						e.stopPropagation();
+					}}
+				>
+					<LikeButton slug={post.slug} />
+				</div>
 			</div>
 			<CardHeader className="space-y-2">
 				<div className="flex items-center gap-4 text-sm text-muted-foreground">

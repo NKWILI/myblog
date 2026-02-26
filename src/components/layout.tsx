@@ -1,6 +1,7 @@
 import { MobileNav } from "@/components/mobile-nav";
 import { ModeToggle } from "@/components/mode-toggle";
 import { siteConfig } from "@/lib/site-config";
+import { Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -14,13 +15,18 @@ export default function Layout({ children }: LayoutProps) {
 			<header className="border-b">
 				<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex md:grid md:grid-cols-[1fr_auto_1fr] justify-between md:justify-stretch items-start sm:items-center min-h-16 py-3 sm:py-0 gap-4">
-						<div className="flex items-center min-w-0">
+						<div className="flex flex-col min-w-0">
 							<Link
 								href="/"
-								className="text-xl font-bold text-foreground tracking-wide hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
+								className="text-xl font-bold text-foreground tracking-wide hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] w-fit"
 							>
 								{siteConfig.siteName}
 							</Link>
+							{siteConfig.tagline?.trim() ? (
+								<span className="text-xs text-muted-foreground mt-0.5 w-fit max-w-[min(100%,20rem)]">
+									{siteConfig.tagline.trim()}
+								</span>
+							) : null}
 						</div>
 						<ul className="hidden md:flex justify-center items-center gap-6">
 							{siteConfig.navItems.map(({ href, label }) => (
@@ -36,6 +42,33 @@ export default function Layout({ children }: LayoutProps) {
 						</ul>
 						<div className="flex items-center justify-end shrink-0 gap-2">
 							<MobileNav navItems={siteConfig.navItems} />
+							<ul className="flex items-center gap-2" aria-label="Social links">
+								{siteConfig.socialLinks.map(({ label, href }) => {
+									const isMail =
+										label === "Email" || href.startsWith("mailto:");
+									return (
+										<li key={href}>
+											<Link
+												href={href}
+												target={href.startsWith("http") ? "_blank" : undefined}
+												rel={
+													href.startsWith("http")
+														? "noopener noreferrer"
+														: undefined
+												}
+												className="text-muted-foreground hover:text-link transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] p-1.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+												aria-label={label}
+											>
+												{isMail ? (
+													<Mail className="size-5" />
+												) : (
+													<Linkedin className="size-5" />
+												)}
+											</Link>
+										</li>
+									);
+								})}
+							</ul>
 							<ModeToggle />
 						</div>
 					</div>
