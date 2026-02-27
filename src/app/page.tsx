@@ -73,9 +73,9 @@ function FeaturedEssaysList({
 						<li key={post.id}>
 							<Link
 								href={`/posts/${post.slug}`}
-								className="block group transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]"
+								className="block group cursor-pointer rounded transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
 							>
-								<span className="font-medium text-foreground group-hover:text-link transition-colors duration-200 ease-out">
+								<span className="font-medium text-foreground group-hover:text-link underline underline-offset-2 decoration-link/50 group-hover:decoration-link transition-colors duration-200 ease-out">
 									{post.title}
 								</span>
 								{post.date && (
