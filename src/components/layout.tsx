@@ -1,7 +1,7 @@
 import { MobileNav } from "@/components/mobile-nav";
 import { ModeToggle } from "@/components/mode-toggle";
 import { siteConfig } from "@/lib/site-config";
-import { FileText, Github, Linkedin, Mail } from "lucide-react";
+import { FileText, Github, Linkedin, Mail, Youtube } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -11,6 +11,7 @@ function SocialIcon({ label, href }: { label: string; href: string }) {
 	if (isMail) return <Mail className="size-5" />;
 	if (isGitHub) return <Github className="size-5" />;
 	if (label === "LinkedIn") return <Linkedin className="size-5" />;
+	if (label === "YouTube") return <Youtube className="size-5" />;
 	return null;
 }
 

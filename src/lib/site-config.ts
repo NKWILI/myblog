@@ -51,13 +51,17 @@ export const siteConfig = {
 			description: "Things I build and ship.",
 		},
 	],
-	/** Footer and header social links (LinkedIn, GitHub, Email). CV is separate (cvUrl). */
+	/** Footer and header social links (LinkedIn, GitHub, YouTube, Email). CV is separate (cvUrl). */
 	socialLinks: [
 		{
 			label: "LinkedIn",
 			href: "https://www.linkedin.com/in/alain-ngongang-0b57ab19a/",
 		},
 		{ label: "GitHub", href: "https://github.com/NKWILI" },
+		{
+			label: "YouTube",
+			href: "https://www.youtube.com/channel/UCUa-Y4sv5kUDFTPxTEXWUmQ",
+		},
 		{ label: "Email", href: "mailto:ngeukeualain@gmail.com" },
 	],
 } as const;
