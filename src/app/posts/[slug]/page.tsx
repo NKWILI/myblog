@@ -33,7 +33,8 @@ export async function generateMetadata(
 		};
 	}
 
-	const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://your-site.com";
+	const siteUrl =
+		process.env.NEXT_PUBLIC_SITE_URL || "https://www.alainngongang.dev";
 
 	return {
 		title: post.title,
@@ -86,7 +87,8 @@ export default async function PostPage({ params }: PostPageProps) {
 		.filter((p) => p.slug !== slug)
 		.map((p) => ({ slug: p.slug, title: p.title, date: p.date }));
 
-	const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://your-site.com";
+	const siteUrl =
+		process.env.NEXT_PUBLIC_SITE_URL || "https://www.alainngongang.dev";
 
 	const jsonLd = {
 		"@context": "https://schema.org",
