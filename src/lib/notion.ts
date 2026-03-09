@@ -4,6 +4,7 @@ import { Client } from "@notionhq/client";
 import type { PageObjectResponse } from "@notionhq/client/";
 import { NotionToMarkdown } from "notion-to-md";
 import type { Post } from "./types";
+import { stripOverviewHeading } from "./utils";
 
 export type { Post } from "./types";
 export { getWordCount } from "./utils";
@@ -113,7 +114,7 @@ export async function getPostFromNotion(pageId: string): Promise<Post | null> {
 			description,
 			date:
 				properties["Published Date"]?.date?.start || new Date().toISOString(),
-			content: contentString,
+			content: stripOverviewHeading(contentString),
 			author: properties.Author?.people?.[0]?.name,
 			tags:
 				properties.Tags?.multi_select?.map(

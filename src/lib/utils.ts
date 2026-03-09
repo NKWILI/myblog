@@ -18,3 +18,11 @@ export function calculateReadingTime(wordCount: number): string {
 	const minutes = Math.ceil(wordCount / WORDS_PER_MINUTE);
 	return `${minutes} min read`;
 }
+
+/**
+ * Removes a single leading "## Overview" line from markdown so it is not shown in the blog.
+ * Only strips when the first line is exactly that heading (with optional whitespace).
+ */
+export function stripOverviewHeading(content: string): string {
+	return content.replace(/^\s*##\s+Overview\s*\n?/, "");
+}
