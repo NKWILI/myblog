@@ -231,3 +231,83 @@
 	opacity: 0.2;
 	pointer-events: none;
 }
+
+/* ==========================================================================
+   Product Evolution section — scoped design tokens
+   ========================================================================== */
+
+/* Light mode Product Evolution palette (scoped to section wrapper) */
+.product-evolution-section {
+	/* Core surfaces – light, layered panel effect */
+	--pe-bg: #f4f5f7;
+	--pe-card: #ffffff;
+
+	/* Typography – dark, editorial ink */
+	--pe-text: #111827;
+	--pe-muted: #6b7280;
+	--pe-serif: var(--font-heading-family);
+
+	/* Accents – premium gold / amber */
+	--pe-gold: #b8956a;
+	--pe-amber: #fbbf77;
+
+	/* Structure */
+	--pe-border: rgba(15, 17, 26, 0.06);
+
+	/* Problem / solution tints */
+	--pe-problem: rgba(239, 68, 68, 0.06);
+	--pe-solution: rgba(34, 197, 94, 0.06);
+
+	/* Placeholder (Epic 4) */
+	--pe-placeholder-border: rgba(15, 17, 26, 0.12);
+	--pe-placeholder-bg-problem: rgba(239, 68, 68, 0.04);
+	--pe-placeholder-bg-solution: rgba(34, 197, 94, 0.04);
+}
+
+/* Dark mode override — cinematic product story */
+.dark .product-evolution-section {
+	--pe-bg: #0f1116;
+	--pe-card: #181b22;
+	--pe-text: #f5f3eb;
+	--pe-muted: #8a90a0;
+	--pe-border: rgba(255, 255, 255, 0.12);
+	--pe-placeholder-border: rgba(255, 255, 255, 0.15);
+	--pe-placeholder-bg-problem: rgba(239, 68, 68, 0.06);
+	--pe-placeholder-bg-solution: rgba(34, 197, 94, 0.06);
+}
+
+/* Utility classes that consume Product Evolution tokens */
+.pe-bg {
+	background-color: var(--pe-bg);
+}
+
+.pe-card {
+	background-color: var(--pe-card);
+}
+
+.pe-text {
+	color: var(--pe-text);
+}
+
+.pe-muted {
+	color: var(--pe-muted);
+}
+
+.pe-border-b {
+	border-bottom: 1px solid var(--pe-border);
+}
+
+.pe-border-t {
+	border-top: 1px solid var(--pe-border);
+}
+
+.pe-eyebrow {
+	color: var(--pe-gold);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+}
+
+.pe-serif-heading {
+	font-family: var(--pe-serif), ui-serif, Georgia, serif;
+}

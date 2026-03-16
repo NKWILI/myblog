@@ -48,3 +48,6 @@ next-env.d.ts
 /cache
 posts-cache.json
 .cursor/debug-e83c64.log
+.cursor/plans/epic-2-3-product-evolution_1ba78053.plan.md
+.gitignore
+.cursor/plans/epic_1_plan_dc995f03.plan.md

@@ -1,0 +1,11 @@
+---
+description: Biome lint and test patterns so the same errors don't repeat
+alwaysApply: true
+---
+
+# Biome and test conventions
+
+- **Linting**: Use Biome; fix all reported errors. Avoid disabling rules without a short, documented comment (e.g. run-once effect with ref).
+- **Tests**: Prefer `for...of` over `.forEach()`. Do not use `any`; use types exported from the module under test (e.g. `ProductEvolutionProject`, `ProductMetric`, `ProductVersion`).
+- **React**: Do not use non-null assertion (`!`). Handle null/undefined explicitly (e.g. `?? fallback`, early return, or guard). Keep hook dependency arrays exhaustive, or use a ref for “run once on mount” and add a targeted ignore with a comment.
+- **A11y**: Inline SVGs must have a text alternative: add `<title>…</title>` inside the SVG, or use `role="img"` and `aria-label`. If the icon is decorative, wrap in a container with `aria-hidden="true"` and still add `<title>` for the linter.
