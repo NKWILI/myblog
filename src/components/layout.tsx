@@ -93,51 +93,6 @@ export default function Layout({ children }: LayoutProps) {
 			<main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 				{children}
 			</main>
-
-			<footer className="bg-muted border-t">
-				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-					<div className="flex flex-col items-center justify-center gap-4 text-center">
-						{siteConfig.hireabilityLine ? (
-							<p className="text-muted-foreground text-sm">
-								{siteConfig.hireabilityLine}
-							</p>
-						) : null}
-						<ul className="flex flex-wrap items-center justify-center gap-6">
-							{siteConfig.socialLinks.map(({ label, href }) => (
-								<li key={href}>
-									<Link
-										href={href}
-										target={href.startsWith("http") ? "_blank" : undefined}
-										rel={
-											href.startsWith("http")
-												? "noopener noreferrer"
-												: undefined
-										}
-										className="text-muted-foreground hover:text-link hover:underline transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] text-sm"
-									>
-										{label}
-									</Link>
-								</li>
-							))}
-							{siteConfig.cvUrl ? (
-								<li>
-									<Link
-										href={siteConfig.cvUrl}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-muted-foreground hover:text-link hover:underline transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] text-sm"
-									>
-										CV
-									</Link>
-								</li>
-							) : null}
-						</ul>
-						<p className="text-muted-foreground text-sm">
-							© {new Date().getFullYear()} {siteConfig.siteName}
-						</p>
-					</div>
-				</div>
-			</footer>
 		</div>
 	);
 }
