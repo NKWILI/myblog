@@ -41,14 +41,14 @@ export const siteConfig = {
 			description: "Notes and longer pieces on engineering and writing.",
 		},
 		{
+			href: "/projects",
+			label: "Products & Projects",
+			description: "Products and projects I've worked on.",
+		},
+		{
 			href: "/tutorial",
 			label: "Guides",
 			description: "Step-by-step guides and how-tos.",
-		},
-		{
-			href: "/projects",
-			label: "Projects",
-			description: "Things I build and ship.",
 		},
 	],
 	/** Footer and header social links (LinkedIn, GitHub, YouTube, Email). CV is separate (cvUrl). */

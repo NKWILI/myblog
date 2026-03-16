@@ -119,37 +119,6 @@ export default function Home() {
 					/>
 				</div>
 			</section>
-
-			<FadeInSection>
-				{/* Mission paragraph — room to breathe */}
-				<section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20 md:pt-28 md:pb-28">
-					<p className="text-foreground/90 leading-[1.7]">
-						{siteConfig.missionStatement}
-					</p>
-				</section>
-			</FadeInSection>
-
-			<FadeInSection>
-				{/* Currently Building — ambition without bragging */}
-				<section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">
-					<p className="text-foreground/90 leading-[1.7]">
-						{siteConfig.buildingStatement}
-					</p>
-					<Link
-						href="/projects"
-						className="mt-3 inline-block text-sm text-link/90 transition-colors duration-200 hover:text-link"
-					>
-						Explore projects →
-					</Link>
-				</section>
-			</FadeInSection>
-
-			<FadeInSection>
-				{/* Featured Essays (single block for #featured-essays anchor) */}
-				<section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16">
-					<FeaturedEssaysList posts={featuredPosts} id="featured-essays" />
-				</section>
-			</FadeInSection>
 		</div>
 	);
 }
