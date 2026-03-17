@@ -426,7 +426,7 @@ export const productEvolutionProjects: ProductEvolutionProject[] = [
 	{
 		id: "fastsite",
 		tabLabel: "FastSite",
-		status: "in_progress",
+		status: "active",
 		description:
 			"Modular SaaS website generator: pick a template, customize content/theme, ship a production Next.js site.",
 		liveSiteUrl: "https://mvpfastsite.vercel.app/",
