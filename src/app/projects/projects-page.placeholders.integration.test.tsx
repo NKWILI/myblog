@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+	fireEvent,
+	render,
+	screen,
+	waitFor,
+	within,
+} from "@testing-library/react";
 // @vitest-environment jsdom
 import React from "react";
 import { describe, expect, it } from "vitest";
@@ -9,10 +15,11 @@ describe("ProjectsPage placeholders (integration)", () => {
 	it("expands version card and shows case study or placeholders", async () => {
 		render(<ProjectsPage />);
 
-		// Find a version card header (current version may be open by default).
-		const versionButton = await screen.findByRole("button", {
-			name: /ai-native workspace/i,
+		const versionHistory = await screen.findByRole("region", {
+			name: /version history/i,
 		});
+		const [versionButton] = within(versionHistory).getAllByRole("button");
+		expect(versionButton, "expected at least one version button").toBeTruthy();
 		const wasExpanded = versionButton.getAttribute("aria-expanded") === "true";
 
 		if (!wasExpanded) {

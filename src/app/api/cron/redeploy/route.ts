@@ -24,7 +24,14 @@ export async function GET(request: Request) {
 
 	const token = process.env.VERCEL_TOKEN;
 	const projectId = process.env.VERCEL_PROJECT_ID;
-	if (!token || !projectId) {
+	if (
+		!token ||
+		!projectId ||
+		token === "undefined" ||
+		projectId === "undefined" ||
+		token.trim() === "" ||
+		projectId.trim() === ""
+	) {
 		return NextResponse.json(
 			{ error: "VERCEL_TOKEN and VERCEL_PROJECT_ID must be set" },
 			{ status: 500 },

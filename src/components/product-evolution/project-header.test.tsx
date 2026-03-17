@@ -14,6 +14,7 @@ function makeProject(
 		tabLabel: "Sample",
 		status,
 		description: "Sample description for header rendering.",
+		liveSiteUrl: "https://example.com",
 		metrics: [],
 		versions: [],
 	};
@@ -25,5 +26,8 @@ describe("ProjectHeader", () => {
 		render(<ProjectHeader project={project} />);
 		expect(screen.getByText(project.tabLabel)).toBeInTheDocument();
 		expect(screen.getByText(project.description)).toBeInTheDocument();
+		expect(
+			screen.getByRole("link", { name: /live site/i }),
+		).toBeInTheDocument();
 	});
 });
