@@ -2,6 +2,7 @@
 
 import { ProjectHeader } from "@/components/product-evolution/project-header";
 import { ProjectMetrics } from "@/components/product-evolution/project-metrics";
+import { ProjectWebsiteTechStack } from "@/components/product-evolution/project-website-tech-stack";
 import { ProductEvolutionSectionHeader } from "@/components/product-evolution/section-header";
 import { ProductEvolutionTabBar } from "@/components/product-evolution/tab-bar";
 import { VersionTimeline } from "@/components/product-evolution/version-timeline";
@@ -192,6 +193,7 @@ export default function ProjectsPage() {
 									<div className="space-y-6">
 										<ProjectHeader project={activeProject} />
 										<ProjectMetrics project={activeProject} />
+										<ProjectWebsiteTechStack project={activeProject} />
 										<VersionTimeline
 											versions={activeProject.versions}
 											initialVersionId={
