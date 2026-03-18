@@ -12,7 +12,7 @@ export type CachePostsOptions = {
 	fetchPublishedPosts?: () => Promise<PageObjectResponse[]>;
 	/** Override for Notion fetch (for tests). */
 	getPostFromNotion?: (pageId: string) => Promise<Post | null>;
-	/** Public directory (default: process.cwd()). */
+	/** Public directory (default: <repo>/public). */
 	publicDir?: string;
 	/** Output cache file path (default: posts-cache.json in cwd). */
 	cachePath?: string;
@@ -25,7 +25,7 @@ export async function cachePosts(
 ): Promise<void> {
 	const fetchPosts = options.fetchPublishedPosts ?? fetchPublishedPosts;
 	const getPost = options.getPostFromNotion ?? getPostFromNotion;
-	const publicDir = options.publicDir ?? process.cwd();
+	const publicDir = options.publicDir ?? path.join(process.cwd(), "public");
 	const cachePath =
 		options.cachePath ?? path.join(process.cwd(), "posts-cache.json");
 	const fetchFn = options.fetchFn;

@@ -16,6 +16,9 @@
 # playwright
 /playwright-report/
 
+# test runners
+/test-results/
+
 # next.js
 /.next/
 /out/

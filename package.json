@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "npm run cache:posts -- --allow-fail && next dev --turbopack",
 		"dev:e2e": "node scripts/copy-e2e-cache.js && next dev --turbopack",
-		"build": "npm run cache:posts -- --allow-fail && next build",
+		"build": "npm run cache:posts && next build",
 		"start": "next start",
 		"lint": "biome lint .",
 		"format": "biome format . --write",
