@@ -5,7 +5,10 @@
 			".next",
 			"out",
 			"build",
+			"coverage",
 			".vercel",
+			"playwright-report",
+			"test-results",
 			"*.tsbuildinfo",
 			"posts-cache.json"
 		]
