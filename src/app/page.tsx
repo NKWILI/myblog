@@ -35,7 +35,7 @@ function HeroContent() {
 			{/* Action — clearly separated */}
 			<div className="mt-8 flex flex-wrap gap-3">
 				<Link
-					href="#featured-essays"
+					href="/blog"
 					className="inline-flex items-center justify-center rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background shadow transition-[color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-foreground/90 active:scale-[0.98]"
 				>
 					Read the essays
