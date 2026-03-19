@@ -200,13 +200,13 @@ export async function downloadImage(
 	}
 
 	const fs = await import("node:fs");
-	const os = await import("node:os");
+	fs.mkdirSync(outputDir, { recursive: true });
+	const uniqueSuffix = `${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 	const tmpPath = path.join(
-		os.tmpdir(),
-		`notion-img-${basenameWithoutExt}${ext}`,
+		outputDir,
+		`.notion-img-${basenameWithoutExt}-${uniqueSuffix}${ext}.tmp`,
 	);
 	fs.writeFileSync(tmpPath, Buffer.from(buf));
-	fs.mkdirSync(outputDir, { recursive: true });
 	fs.renameSync(tmpPath, filepath);
 	return filename;
 }
