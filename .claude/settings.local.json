@@ -1,5 +1,11 @@
 {
 	"permissions": {
-		"allow": ["Bash(xargs grep:*)", "Bash(npm install:*)", "Bash(pnpm add:*)"]
+		"allow": [
+			"Bash(xargs grep:*)",
+			"Bash(npm install:*)",
+			"Bash(pnpm add:*)",
+			"Bash(pnpm install:*)",
+			"Bash(npx pnpm:*)"
+		]
 	}
 }
