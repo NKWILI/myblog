@@ -5,6 +5,7 @@ import { components } from "@/components/mdx-component";
 import { ShareButton } from "@/components/share-button";
 import { Badge } from "@/components/ui/badge";
 import { getPostsFromCache, getWordCount } from "@/lib/notion";
+import { likesKey, redis } from "@/lib/redis";
 import { calculateReadingTime } from "@/lib/utils";
 import { format } from "date-fns";
 import type { Metadata } from "next";
@@ -87,6 +88,13 @@ export default async function PostPage({ params }: PostPageProps) {
 		.filter((p) => p.slug !== slug)
 		.map((p) => ({ slug: p.slug, title: p.title, date: p.date }));
 
+	let initialLikeCount = 0;
+	try {
+		initialLikeCount = (await redis.get<number>(likesKey(slug))) ?? 0;
+	} catch {
+		// Redis unavailable; count hydrates client-side
+	}
+
 	const siteUrl =
 		process.env.NEXT_PUBLIC_SITE_URL || "https://www.alainngongang.dev";
 
@@ -152,7 +160,7 @@ export default async function PostPage({ params }: PostPageProps) {
 									title={post.title}
 									description={post.description}
 								/>
-								<LikeButton slug={slug} />
+								<LikeButton slug={slug} initialCount={initialLikeCount} />
 							</span>
 						</div>
 
