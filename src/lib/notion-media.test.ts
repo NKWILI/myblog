@@ -1,5 +1,9 @@
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+	downloadImage,
 	extractImageManifest,
 	isDownloadableImageUrl,
 	rewriteMarkdownWithLocalImages,
@@ -129,5 +133,33 @@ describe("rewriteMarkdownWithLocalImages", () => {
 		const md = "![Alt](https://unmapped.com/img)";
 		const out = rewriteMarkdownWithLocalImages(md, new Map());
 		expect(out).toBe("![Alt](https://unmapped.com/img)");
+	});
+});
+
+describe("downloadImage", () => {
+	it("writes the downloaded image into the output directory", async () => {
+		const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "notion-media-"));
+		try {
+			const fetchFn = async () =>
+				new Response(new Uint8Array([1, 2, 3]), {
+					status: 200,
+					headers: { "content-type": "image/png" },
+				});
+
+			const filename = await downloadImage(
+				"https://example.com/image.png",
+				outputDir,
+				"post-image",
+				{ fetchFn: fetchFn as typeof fetch },
+			);
+
+			expect(filename).toBe("post-image.png");
+			expect(fs.existsSync(path.join(outputDir, filename))).toBe(true);
+			expect(fs.readFileSync(path.join(outputDir, filename))).toEqual(
+				Buffer.from([1, 2, 3]),
+			);
+		} finally {
+			fs.rmSync(outputDir, { recursive: true, force: true });
+		}
 	});
 });

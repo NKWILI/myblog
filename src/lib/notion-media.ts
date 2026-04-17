@@ -192,6 +192,9 @@ export async function downloadImage(
 	const filename = `${basenameWithoutExt}${ext}`;
 	const filepath = path.join(outputDir, filename);
 
+	const fs = await import("node:fs");
+	fs.mkdirSync(outputDir, { recursive: true });
+
 	const buf = await res.arrayBuffer();
 	if (buf.byteLength > maxBytes) {
 		throw new Error(
@@ -199,14 +202,11 @@ export async function downloadImage(
 		);
 	}
 
-	const fs = await import("node:fs");
-	const os = await import("node:os");
 	const tmpPath = path.join(
-		os.tmpdir(),
-		`notion-img-${basenameWithoutExt}${ext}`,
+		outputDir,
+		`.notion-img-${basenameWithoutExt}-${process.pid}-${Date.now()}${ext}`,
 	);
 	fs.writeFileSync(tmpPath, Buffer.from(buf));
-	fs.mkdirSync(outputDir, { recursive: true });
 	fs.renameSync(tmpPath, filepath);
 	return filename;
 }
